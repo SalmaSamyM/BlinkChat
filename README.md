@@ -25,49 +25,6 @@ Backend: Firebase (Auth, Firestore, Storage)
 
 State Management: React Hooks / Context API
 
-                ┌──────────────────────────┐
-                │       User Opens App     │
-                └─────────────┬────────────┘
-                              │
-                              ▼
-              ┌─────────────────────────────┐
-              │  Check Authentication State │
-              │ Firebase Authentication     │
-              └─────────────┬───────────────┘
-                      ┌─────┴─────┐
-          ┌───────────▼────────────▼───────────┐
-          │                                    │
-┌──────────────────────┐           ┌──────────────────────┐
-│User NOT Authenticated│           │User IS Authenticated │
-└──────────┬───────────┘           └──────────┬───────────┘
-           │                                  │
-           ▼                                  ▼
-┌──────────────────────┐          ┌────────────────────────┐
-│ Login / Register Page│          │  Chat Page (Firestore) │
-└──────────┬───────────┘          └──────────┬─────────────┘
-           │                                 │
-           ▼                                 ▼
- ┌──────────────────────┐         ┌────────────────────────┐
- │ Firebase Auth creates│         │ User selects a chat or │
- │ user & stores profile│         │ starts new conversation│
- └──────────┬───────────┘         └──────────┬─────────────┘
-            │                                │
-            ▼                                ▼
-   ┌──────────────────────┐         ┌────────────────────────┐
-   │ Redirect to Dashboard│         │Send Message → Firestore│
-   └──────────┬───────────┘         └──────────┬─────────────┘
-              │                                │
-              ▼                                ▼
-      ┌────────────────────┐           ┌───────────────────────┐
-      │ Realtime Firestore │◄──────────┤ Message stored in DB  │
-      │ listener updates UI│           └───────────────────────┘
-      └──────────┬─────────┘
-                 │
-                 ▼
-       ┌─────────────────────────┐
-       │Messages appear instantly│
-       │to both sender & receiver│
-       └─────────────────────────┘
 
 ![alt text](image.png)
 ![alt text](image-1.png)
